@@ -31,3 +31,24 @@ string reverseWord(string s) {
 
     return res;
 }
+
+
+// Using two pointers only
+string reverseWords(string s) {
+    string res;
+    int end = s.size() - 1;
+
+    while (end >= 0) {
+        while (end >= 0 && s[end] == ' ') end--;
+        if (end < 0) break;
+
+        if (!res.empty()) res += ' ';
+
+        int start = end;
+        while (start >= 0 && s[start] != ' ') start--;
+
+        for (int i = start + 1; i < end + 1; i++) res += s[i];
+        end = start;
+    }
+    return res;
+}
